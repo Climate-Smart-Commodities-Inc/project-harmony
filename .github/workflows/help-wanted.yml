@@ -1,0 +1,149 @@
+# Deterministic HELP WANTED router. No AI, no guessing.
+# Reads the EXACT dropdown value from the issue form and looks it up in a table.
+# Unknown values get a generic human-escalation comment — never a guess.
+name: Help Wanted Router
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const TRACKS = {
+              'Expert / Advisor': {
+                label: 'track:expert-advisor',
+                next:
+                  `**Expert / Advisor track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally (no auto-accept, ever).\n` +
+                  `2. Reply here with: your domain, one past project, and how you'd like to help (review, advise, build).\n` +
+                  `3. We'll schedule a 30-minute intro call.`,
+              },
+              'Software Builder': {
+                label: 'track:builder',
+                next:
+                  `**Software Builder track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally.\n` +
+                  `2. Browse issues labeled \`good first issue\` and comment to claim one.\n` +
+                  `3. Read \`CONTRIBUTING.md\`, then open a PR. Every PR gets human review.`,
+              },
+              'Data & GIS': {
+                label: 'track:data-gis',
+                next:
+                  `**Data & GIS track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally.\n` +
+                  `2. Tell us your stack (QGIS, PostGIS, BigQuery GIS, deck.gl…) and one dataset you've worked with.\n` +
+                  `3. We'll point you at the current geospatial backlog.`,
+              },
+              'Field Operations': {
+                label: 'track:field-ops',
+                next:
+                  `**Field Operations track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally.\n` +
+                  `2. Note your location and any equipment/site access you have.\n` +
+                  `3. We'll connect you with the relevant proof-of-concept site lead.`,
+              },
+              'Grants & Research': {
+                label: 'track:grants-research',
+                next:
+                  `**Grants & Research track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally.\n` +
+                  `2. Share your funding/grant background (programs, roles, wins).\n` +
+                  `3. We'll loop you into the active proposal pipeline.`,
+              },
+              'Design & Docs': {
+                label: 'track:design-docs',
+                next:
+                  `**Design & Docs track** — here's what happens next:\n\n` +
+                  `1. A maintainer reads your application personally.\n` +
+                  `2. Point us at a writing or design sample you're proud of.\n` +
+                  `3. We'll assign a first docs/design issue.`,
+              },
+            };
+
+            const GROUPS = {
+              'Grant reviewer':   { label: 'group:assurance', msg: `Thanks for introducing yourself as a **grant reviewer**. A maintainer will follow up here — if there's a proposal you'd like to see, say the word.` },
+              'Buyer':            { label: 'group:market', msg: `Thanks — logged as a **buyer** introduction. Tell us what feedstock or product you're sourcing and at what volume, and a maintainer will respond.` },
+              'Producer':         { label: 'group:market', msg: `Thanks — logged as a **producer** introduction. Share your capacity and location and a maintainer will respond.` },
+              'Distributor':      { label: 'group:market', msg: `Thanks — logged as a **distributor** introduction. Share your territory and channels and a maintainer will respond.` },
+              'Laborer / Employee': { label: 'group:workforce', msg: `Thanks for your interest in working with us. This repo tracks project work — for employment, reply with your trade/skills and location and a maintainer will respond.` },
+              'Educator':         { label: 'group:learning', msg: `Thanks — logged as an **educator** introduction. Tell us your institution and what you'd like to collaborate on.` },
+              'Student':          { label: 'group:learning', msg: `Welcome! Students usually start with \`good first issue\` — comment to claim one, and a maintainer will guide you.` },
+              'Professor':        { label: 'group:learning', msg: `Thanks — logged as a **professor** introduction. Tell us your department and research interests.` },
+              'Farmer / Grower':  { label: 'group:land', msg: `Thanks — logged as a **farmer/grower** introduction. Share your acreage, county, and crops and a maintainer will respond.` },
+              'Collaborator':     { label: 'group:network', msg: `Thanks — logged as a **collaborator** introduction. Describe the collaboration you have in mind.` },
+              'Partner':          { label: 'group:network', msg: `Thanks — logged as a **partner** introduction. Describe the partnership you have in mind and a maintainer will respond.` },
+              'Investor / Patron': { label: 'group:capital', msg: `Thanks — logged as an **investor/patron** introduction. A maintainer will follow up here directly.` },
+              'Competitor':       { label: 'group:network', msg: `Thanks for the honest intro — logged as a **competitor**. We're open to coopetition where it serves growers; a maintainer will respond.` },
+              'Expert / Advisor': { label: 'group:assurance', msg: `Thanks — logged as an **expert/advisor** introduction. Share your domain and one credential, and a maintainer will schedule an intro.` },
+              'Smart-contract / closed-loop': { label: 'group:assurance', msg: `Thanks — logged under **smart-contract / closed-loop** roles. Describe the mechanism or integration you have in mind.` },
+            };
+
+            // Extract the exact dropdown selection from the issue-form body.
+            // Issue forms render as: "### Role track\n\nExpert / Advisor"
+            function fieldValue(body, heading) {
+              const lines = body.split('\n');
+              const i = lines.findIndex(l => l.trim() === heading);
+              if (i === -1) return null;
+              for (let j = i + 1; j < lines.length; j++) {
+                const t = lines[j].trim();
+                if (t && !t.startsWith('_No response_')) return t;
+              }
+              return null;
+            }
+
+            const body = context.payload.issue.body || '';
+            const labels = context.payload.issue.labels.map(l => l.name);
+            const isTalent = labels.includes('talent-application');
+            const isStakeholder = labels.includes('stakeholder-intro');
+            if (!isTalent && !isStakeholder) {
+              core.info('Not a talent or stakeholder intake issue; skipping.');
+              return;
+            }
+
+            let entry = null;
+            if (isTalent) {
+              const track = fieldValue(body, '### Role track');
+              entry = TRACKS[track] || null;
+              if (!entry) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: context.issue.number,
+                  body: `Thanks for applying! We couldn't match a role track from your form ` +
+                    `(got: \`${track}\`) — a maintainer will route this by hand. Nothing is auto-rejected.`,
+                });
+                return;
+              }
+              await github.rest.issues.addLabels({
+                ...context.repo, issue_number: context.issue.number, labels: [entry.label],
+              });
+              await github.rest.issues.createComment({
+                ...context.repo, issue_number: context.issue.number, body: entry.next,
+              });
+            } else {
+              const kind = fieldValue(body, '### Stakeholder type');
+              entry = GROUPS[kind] || null;
+              if (!entry) {
+                await github.rest.issues.createComment({
+                  ...context.repo,
+                  issue_number: context.issue.number,
+                  body: `Thanks for introducing yourself! We couldn't match a stakeholder type ` +
+                    `(got: \`${kind}\`) — a maintainer will route this by hand.`,
+                });
+                return;
+              }
+              await github.rest.issues.addLabels({
+                ...context.repo, issue_number: context.issue.number, labels: [entry.label],
+              });
+              await github.rest.issues.createComment({
+                ...context.repo, issue_number: context.issue.number, body: entry.msg,
+              });
+            }
+            core.info('Routed via deterministic lookup table.');
