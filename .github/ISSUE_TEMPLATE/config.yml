@@ -1,0 +1,6 @@
+# Replace REPO_URL with the repo's real URL after copying this kit in.
+blank_issues_enabled: false
+contact_links:
+  - name: "💬 Discussions — Q&A and ideas"
+    url: "REPO_URL/discussions"
+    about: "Questions and open-ended discussion live here, not in issues."
