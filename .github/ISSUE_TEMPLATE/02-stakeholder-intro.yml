@@ -1,0 +1,66 @@
+name: "🤝 Stakeholder Intro"
+description: "Buyers, farmers, educators, investors, partners — introduce yourself."
+title: "[INTRO] "
+labels: ["stakeholder-intro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome. Tell us who you are and a maintainer will respond personally.
+        Our bots only route and label — humans handle every introduction.
+  - type: input
+    id: handle
+    attributes:
+      label: "Name / handle"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: "Stakeholder type"
+      description: "Pick the closest fit. The router bot files your intro under the right group."
+      options:
+        - "Grant reviewer"
+        - "Buyer"
+        - "Producer"
+        - "Distributor"
+        - "Laborer / Employee"
+        - "Educator"
+        - "Student"
+        - "Professor"
+        - "Farmer / Grower"
+        - "Collaborator"
+        - "Partner"
+        - "Investor / Patron"
+        - "Competitor"
+        - "Expert / Advisor"
+        - "Smart-contract / closed-loop"
+    validations:
+      required: true
+  - type: input
+    id: org
+    attributes:
+      label: "Organization (if any)"
+    validations:
+      required: false
+  - type: textarea
+    id: bring
+    attributes:
+      label: "What do you bring?"
+      description: "Capacity, product, expertise, land, capital — whatever applies."
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: "What do you need?"
+      description: "What would make this worth your time?"
+    validations:
+      required: false
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: "Agreements"
+      options:
+        - label: "I have read the Code of Conduct and agree to follow it."
+          required: true
