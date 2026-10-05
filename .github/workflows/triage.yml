@@ -1,0 +1,52 @@
+# Deterministic keyword triage. No AI, no guessing.
+# Adds labels based on a fixed keyword table. Never removes labels, never assigns people.
+name: Triage Labels
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  issues: write
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.payload.sender.type === 'Bot') {
+              core.info('Sender is a bot; skipping triage.');
+              return;
+            }
+            // RULES: label -> keywords (case-insensitive substring match on title + body)
+            const RULES = [
+              { labels: ['bug'], any: ['bug', 'error', 'crash', 'broken', 'fails', 'failure', 'exception', 'not working'] },
+              { labels: ['documentation'], any: ['docs', 'readme', 'typo', 'documentation'] },
+              { labels: ['grant'], any: ['vapg', 'tdec', 'grant', 'nofo', 'usda'] },
+              { labels: ['hempcrete'], any: ['hempcrete'] },
+              { labels: ['help wanted'], any: ['help wanted', 'looking for', 'volunteer', 'hiring'] },
+              { labels: ['good first issue'], any: ['good first issue', 'beginner friendly', 'easy fix'] },
+              { labels: ['field-ops'], any: ['decorticat', 'harvest', 'field trial', 'poc', 'proof of concept'] },
+              { labels: ['security'], any: ['vulnerability', 'cve', 'security', 'exploit'] },
+            ];
+            const issue = context.payload.issue;
+            const text = `${issue.title}\n${issue.body || ''}`.toLowerCase();
+            const existing = new Set(issue.labels.map(l => l.name.toLowerCase()));
+            const toAdd = [];
+            for (const rule of RULES) {
+              if (rule.any.some(k => text.includes(k))) {
+                for (const label of rule.labels) {
+                  if (!existing.has(label.toLowerCase()) && !toAdd.includes(label)) toAdd.push(label);
+                }
+              }
+            }
+            if (toAdd.length === 0) {
+              core.info('No keyword rules matched; no labels added.');
+              return;
+            }
+            await github.rest.issues.addLabels({
+              ...context.repo, issue_number: context.issue.number, labels: toAdd,
+            });
+            core.info(`Added labels: ${toAdd.join(', ')}`);
