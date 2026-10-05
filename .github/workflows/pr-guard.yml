@@ -1,0 +1,45 @@
+# Deterministic PR guard. No AI, no guessing.
+# Requires a linked issue (Closes #NNN). Self-heals: removes the label once fixed.
+name: PR Guard
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const LINKED = /(close|closes|closed|fix|fixes|fixed|resolve|resolves|resolved)\s+#\d+/i;
+            const body = context.payload.pull_request.body || '';
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const hasLink = LINKED.test(body);
+            const flagged = labels.includes('needs-linked-issue');
+
+            if (!hasLink && !flagged) {
+              await github.rest.issues.addLabels({
+                ...context.repo, issue_number: context.issue.number, labels: ['needs-linked-issue'],
+              });
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: context.issue.number,
+                body: `⚠️ **PR Guard:** no linked issue found.\n\n` +
+                  `Please add \`Closes #NNN\` (or Fixes / Resolves) to the PR description ` +
+                  `so this change traces back to a tracked issue. The label clears itself once you do.`,
+              });
+              core.info('Flagged: no linked issue.');
+            } else if (hasLink && flagged) {
+              await github.rest.issues.removeLabel({
+                ...context.repo, issue_number: context.issue.number, name: 'needs-linked-issue',
+              });
+              core.info('Linked issue found; flag cleared.');
+            } else {
+              core.info(`OK (linked=${hasLink}, flagged=${flagged}).`);
+            }
