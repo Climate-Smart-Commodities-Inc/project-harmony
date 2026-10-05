@@ -1,0 +1,44 @@
+# Deterministic welcome bot. No AI, no guessing.
+# Fires ONLY when GitHub reports the author as a first-time contributor.
+name: Welcome Bot
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const assoc = context.payload.sender.author_association;
+            const firstTimer = assoc === 'FIRST_TIMER' || assoc === 'FIRST_TIME_CONTRIBUTOR';
+            if (!firstTimer) {
+              core.info(`Not a first-time contributor (${assoc}); skipping welcome.`);
+              return;
+            }
+            const isPR = !!context.payload.pull_request;
+            const body = isPR
+              ? `🎉 Thanks for your first pull request!\n\n` +
+                `Our checks are 100% deterministic: a linked issue, a filled checklist, and passing CI.\n` +
+                `A human reviews every PR — no auto-merges, ever.\n` +
+                `Please read \`CONTRIBUTING.md\` — it documents exactly what our bots do (and don't do).`
+              : `👋 Welcome to Project Harmony — thanks for opening your first issue!\n\n` +
+                `A maintainer will read this personally. While you wait:\n\n` +
+                `- Applying as talent? Use the **Talent Application** form so we route you to the right track.\n` +
+                `- Here as a stakeholder (buyer, farmer, educator, investor…)? The **Stakeholder Intro** form gets you to the right people fastest.\n` +
+                `- Please read \`CONTRIBUTING.md\` — it documents exactly what our bots do (and don't do).`;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+            core.info('Welcome comment posted.');
