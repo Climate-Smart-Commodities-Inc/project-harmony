@@ -1,0 +1,83 @@
+name: "🙋 Talent Application (HELP WANTED)"
+description: "Apply as a builder, expert, or advisor. A human reads every application."
+title: "[TALENT] "
+labels: ["talent-application", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for raising your hand. **No bots decide anything here** — automation only routes
+        and labels; a human reads every word and replies.
+
+        **Before you apply:** read `talent/requirements.txt` and the 10-point screen in
+        `talent/ten-point-screen.md` — that is exactly how you will be scored.
+  - type: input
+    id: handle
+    attributes:
+      label: "Name / handle"
+      placeholder: "e.g. @handle or Full Name"
+    validations:
+      required: true
+  - type: dropdown
+    id: track
+    attributes:
+      label: "Role track"
+      description: "Pick the closest fit. The router bot files your application under this track."
+      options:
+        - "Expert / Advisor"
+        - "Software Builder"
+        - "Data & GIS"
+        - "Field Operations"
+        - "Grants & Research"
+        - "Design & Docs"
+    validations:
+      required: true
+  - type: textarea
+    id: skills
+    attributes:
+      label: "Skills & experience"
+      description: "Languages, tools, domain expertise — concrete, please."
+      placeholder: "e.g. Python, QGIS, hemp agronomy, grant writing…"
+    validations:
+      required: true
+  - type: input
+    id: links
+    attributes:
+      label: "Portfolio / GitHub / LinkedIn"
+      placeholder: "https://…"
+    validations:
+      required: false
+  - type: dropdown
+    id: availability
+    attributes:
+      label: "Availability"
+      options:
+        - "Full-time"
+        - "Part-time"
+        - "Volunteer"
+        - "Advisor-only"
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: "Why this project?"
+      description: "Two or three sentences."
+    validations:
+      required: true
+  - type: textarea
+    id: qualification_notes
+    attributes:
+      label: "Qualification notes (optional)"
+      description: "Which of the 10 points in talent/requirements.txt do you meet? One line of evidence each."
+    validations:
+      required: false
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: "Agreements"
+      options:
+        - label: "I have read the Code of Conduct and agree to follow it."
+          required: true
+        - label: "I understand a human reviews every application — nothing here auto-accepts or auto-rejects."
+          required: true
