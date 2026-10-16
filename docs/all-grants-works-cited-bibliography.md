@@ -106,6 +106,8 @@ No narrative draft exists yet (FY2027 prep only). One publication referenced in 
   - FYI: in-vitro neuroblastoma work — do not link to Brownstein's hemp-root neolignans; separate lane.
 - Huang, S., et al. (2023). Chemical constituents of industrial hemp roots and their anti-inflammatory activities (compound inventory; THP-1 in-vitro). *Journal of Cannabis Research*. https://doi.org/10.1186/s42238-022-00168-3 ✅
   - FYI: the safe hemp-root reference standard — in-vitro framed as in-vitro, field roots distinct from hairy-root cultures.
+- Cleophas, F. N., Zahari, N. Z., Murugayah, P., Rahim, S. A., & Mohd Yatim, A. N. (2023). Phytoremediation: A novel approach of bast fiber plants (hemp, kenaf, jute and flax) for heavy metals decontamination in soil — Review. *Toxics*, 11(1), 5. https://doi.org/10.3390/toxics11010005 ✅
+  - FYI: peer-reviewed, open-access review — hemp accumulates Zn most strongly of the four bast fibers; Pb, Zn, Cd partition selectively to roots; hemp/kenaf/jute rated suitable for Pb and Zn remediation. **This is the "Priya" paper — third author is Pavitra Murugayah.** Directly backs the phytoremediation narrative.
 
 ---
 
