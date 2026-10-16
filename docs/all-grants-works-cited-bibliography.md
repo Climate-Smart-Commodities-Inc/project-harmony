@@ -22,7 +22,7 @@ No formal citations in the filed materials. Both essays were drafted in chat (Oc
 
 No narrative draft exists yet (FY2027 prep only). One publication referenced in outreach claim notes:
 
-- Brownstein, K. J., Nieukirk, G. E., Edwards, J., et al. (2025). Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells. *Journal of Cannabis Research*, 7, Article 58. https://doi.org/10.1186/s42238-025-00316-5 ✅
+- Brownstein, K. J., Nieukirk, G. E., Edwards, J., et al. (2025, August 16). Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells. *Journal of Cannabis Research*, 7, Article 58. https://doi.org/10.1186/s42238-025-00316-5 ✅
   - FYI: in-vitro cytotoxicity of hemp-root neolignans on cancer cell lines — early-stage lab work, not a therapeutic claim.
   - Claim guard: do not link Brownstein to pomiferin, do not claim growing conditions, do not make therapeutic claims. Two-stream guard applies — contaminated-site roots are not pharma feedstock.
 
@@ -63,7 +63,7 @@ No narrative draft exists yet (FY2027 prep only). One publication referenced in 
 - USDA National Agricultural Statistics Service. (2024, April). National hemp report. https://release.nass.usda.gov/reports/hempan24.pdf ✅
 
 ### "Building a Hemp Innovation and Workforce Pathway at Motlow State Community College" (Senate-ready, May 9, 2026)
-- Brownstein, K. J., Nieukirk, G. E., Edwards, J., Thomas, M., Nguyen, T. H., de Alarcón, P. A., Vermillion, K. E., & Gnanamony, M. (2025). Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells. *Journal of Cannabis Research*, 7, Article 58. https://doi.org/10.1186/s42238-025-00316-5 ✅
+- Brownstein, K. J., Nieukirk, G. E., Edwards, J., Thomas, M., Nguyen, T. H., de Alarcón, P. A., Vermillion, K. E., & Gnanamony, M. (2025, August 16). Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells. *Journal of Cannabis Research*, 7, Article 58. https://doi.org/10.1186/s42238-025-00316-5 ✅
 - Motlow State Community College. (n.d.-a). Distilled spirits. https://www.motlow.edu/academics/programs/natural-science/distilled-spirits.html ✅
 - Motlow State Community College. (n.d.-b). Mechatronics and robotics programs. https://www.motlow.edu/academics/programs/mechatronics/index.html ✅
 - Tennessee Department of Agriculture. (n.d.). Hemp industry. https://www.tn.gov/agriculture/farms/hemp-industry.html ✅
@@ -126,7 +126,7 @@ No narrative draft exists yet (FY2027 prep only). One publication referenced in 
 
 1. **Rehman, M. S. U., et al. (2021). "Processing of industrial hemp for bio-based materials." *Polymers*, 13(16), 2634.** — Fabricated. No such article exists in *Polymers*; the DOI resolves to nothing. It sits in the Senate-ready policy brief and must come out before any reviewer sees it.
 2. **Ji, X., et al. (2021). "Cellulose fermentation and biopolymer synthesis from industrial waste." *Frontiers in Bioengineering and Biotechnology*.** — Fabricated. No such title exists in that journal or anywhere else. It sits in the COMM 2025 decorticator speech's Works Cited and must come out.
-3. **USDA, Agricultural Research Service. (2025, August). "Advancements in Cytotoxicity and Cellular Response in Host Environments."** — That exact title does not exist. BUT Harmony's lab instinct was right: Dr. Korey Brownstein is a Research Chemist at USDA-ARS, National Center for Agricultural Utilization Research (NCAUR), Functional Foods Research Unit, Peoria, IL. The correct replacement citation is Brownstein et al. (2025), "Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells," *J. Cannabis Research*, 7:58 — https://doi.org/10.1186/s42238-025-00316-5. Use that in the apoptosis outline instead.
+3. **USDA, Agricultural Research Service. (2025, August). "Advancements in Cytotoxicity and Cellular Response in Host Environments."** — That exact title does not exist. BUT Harmony's lab instinct was right: Dr. Korey Brownstein is a Research Chemist at USDA-ARS, National Center for Agricultural Utilization Research (NCAUR), Functional Foods Research Unit, Peoria, IL. The correct replacement citation is Brownstein et al. (2025), "Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells," *J. Cannabis Research*, 7:58 — https://doi.org/10.1186/s42238-025-00316-5. Use that in the apoptosis outline instead. (USDA news coverage of the study: "Hemp roots offer new opportunities for farmers and cancer research," January 2026 — https://phys.org/news/2026-01-hemp-roots-opportunities-farmers-cancer.html)
 
 ---
 
