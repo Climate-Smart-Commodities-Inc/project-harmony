@@ -126,7 +126,7 @@ No narrative draft exists yet (FY2027 prep only). One publication referenced in 
 
 1. **Rehman, M. S. U., et al. (2021). "Processing of industrial hemp for bio-based materials." *Polymers*, 13(16), 2634.** — Fabricated. No such article exists in *Polymers*; the DOI resolves to nothing. It sits in the Senate-ready policy brief and must come out before any reviewer sees it.
 2. **Ji, X., et al. (2021). "Cellulose fermentation and biopolymer synthesis from industrial waste." *Frontiers in Bioengineering and Biotechnology*.** — Fabricated. No such title exists in that journal or anywhere else. It sits in the COMM 2025 decorticator speech's Works Cited and must come out.
-3. **USDA, Agricultural Research Service. (2025, August). "Advancements in Cytotoxicity and Cellular Response in Host Environments."** — Unverifiable against any known ARS publication. From the apoptosis speech outline; do not use until verified.
+3. **USDA, Agricultural Research Service. (2025, August). "Advancements in Cytotoxicity and Cellular Response in Host Environments."** — That exact title does not exist. BUT Harmony's lab instinct was right: Dr. Korey Brownstein is a Research Chemist at USDA-ARS, National Center for Agricultural Utilization Research (NCAUR), Functional Foods Research Unit, Peoria, IL. The correct replacement citation is Brownstein et al. (2025), "Neolignans isolated from industrial hemp (*Cannabis sativa* L.) roots have cytotoxic effects on cancer cells," *J. Cannabis Research*, 7:58 — https://doi.org/10.1186/s42238-025-00316-5. Use that in the apoptosis outline instead.
 
 ---
 
