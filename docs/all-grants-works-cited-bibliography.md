@@ -108,6 +108,10 @@ No narrative draft exists yet (FY2027 prep only). One publication referenced in 
   - FYI: the safe hemp-root reference standard — in-vitro framed as in-vitro, field roots distinct from hairy-root cultures.
 - Cleophas, F. N., Zahari, N. Z., Murugayah, P., Rahim, S. A., & Mohd Yatim, A. N. (2023). Phytoremediation: A novel approach of bast fiber plants (hemp, kenaf, jute and flax) for heavy metals decontamination in soil — Review. *Toxics*, 11(1), 5. https://doi.org/10.3390/toxics11010005 ✅
   - FYI: peer-reviewed, open-access review — hemp accumulates Zn most strongly of the four bast fibers; Pb, Zn, Cd partition selectively to roots; hemp/kenaf/jute rated suitable for Pb and Zn remediation. **This is the "Priya" paper — third author is Pavitra Murugayah.** Directly backs the phytoremediation narrative.
+- Ministry of Agriculture, Fisheries and Food (UK). *Properties of Fibre Extracted from Unretted Hemp and Fibre Performance in Composites* — R&D Final Project Report. Contractor: Silsoe Research Institute. https://www.votehemp.com/wp-content/uploads/2018/09/fibre.pdf ✅
+  - FYI: **the must-have decortication source.** Fibre bundles extracted by decortication from unretted vs. retted hemp showed NO significant difference in strength or stiffness; composites from decorticated fibre hit ~5.5 GPa tensile stiffness and ~50 MPa strength. Directly supports the "decorticator preserves fiber strength without retting or harsh chemicals" claim.
+- Mazian, B., Bergeret, A., Benezet, J.-C., & Malhautier, L. (2019). A comparative study of the effect of field retting time on the properties of hemp fibres harvested at different growth stages. *Fibers*, 7(12), 108. https://doi.org/10.3390/fib7120108 ✅
+  - FYI: tensile strength rose from 174 MPa (unretted) to 342 MPa (5 weeks retting) for early-harvest fibre, up to 487 MPa for end-of-flowering harvest — then declined with over-retting. Use for the "retting is weather-gambled; decortication skips the gamble" angle.
 
 ---
 
